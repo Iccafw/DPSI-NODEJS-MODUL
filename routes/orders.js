@@ -4,8 +4,8 @@ const Order = require('../models/order'); // Impor model Order
 // Endpoint untuk menambahkan order baru
 router.post('/', async (req, res, next) => {
   try {
-    const { customerId, firstName, employeeID, orderDate, shipperID } = req.body; 
-    const newOrder = await Order.create({ customerId, firstName, employeeID, orderDate, shipperID });
+    const { customerID, firstName, employeeID, orderDate, shipperID } = req.body; 
+    const newOrder = await Order.create({ customerID, firstName, employeeID, orderDate, shipperID });
     res.status(201).json(newOrder);
   } catch (err) {
     next(err);
@@ -36,10 +36,10 @@ router.get('/:id', async (req, res, next) => {
 // Endpoint untuk memperbarui order berdasarkan ID
 router.put('/:id', async (req, res, next) => {
   try {
-    const { customerId, firstName, employeeID, orderDate, shipperID } = req.body; // Ganti dengan field yang sesuai untuk Order
+    const { customerID, firstName, employeeID, orderDate, shipperID } = req.body; // Ganti dengan field yang sesuai untuk Order
     const order = await Order.findByPk(req.params.id);
     if (order) {
-      order.customerId = customerId;
+      order.customerID = customerID;
       order.firstName = firstName;
       order.employeeID = employeeID;
       order.orderDate = orderDate;
